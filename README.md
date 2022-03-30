@@ -4,7 +4,7 @@
 
 ## Integrantes del equipo
 
-[Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Violeta Caride (violetttttttt), Macarena Blazquez (macarenabfernandez), Victoria Lorenzo (VictoriaLopezLorenzo) 
 
 ## Objetivos del trabajo
 
