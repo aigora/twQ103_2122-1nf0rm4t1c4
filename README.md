@@ -9,3 +9,4 @@ Violeta Caride (violetttttttt), Macarena Blazquez (macarenabfernandez), Victoria
 ## Objetivos del trabajo
 
 [Lista de los objetivos que se persiguen con el trabajo propuesto.]
+a Victoria le cuesta un poquito
