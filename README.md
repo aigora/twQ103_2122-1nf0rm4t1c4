@@ -4,7 +4,7 @@ Un hacker ha robado la contraseña de Netflix del usuario. Para conseguir la nue
 
 ## Integrantes del equipo
 
-Violeta Caride (violetttttttt), Macarena Blazquez (macarenabfernandez), Victoria Lorenzo (VictoriaLopezLorenzo) 
+Violeta Caride (violetttttttt), Macarena Blázquez (macarenabfernandez), Victoria López (VictoriaLopezLorenzo) 
 
 ## Objetivos del trabajo
  
