@@ -1,6 +1,6 @@
 # [Título del trabajo]
 
-[Descripción breve del proyecto a realizar (2-3 frases).]
+Un hacker ha robado la contraseña de Netflix del usuario. Para conseguir la nueva clave de acceso, este deberá responder preguntas sobre series y películas de la plataforma. Cada respuesta correcta le proporcionará una pista para resolver el acertijo final, cuya solución será la contraseña buscada.
 
 ## Integrantes del equipo
 
