@@ -4,11 +4,8 @@ struct TJugador {
     char NombreUsuario[50];
 //    char Contraseña[50];
 };
-int main () {
-    int i=0;
-    int opcion, seguro;
-    struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
 
+void banner () {
     printf("               .....       ....     ..............    ...............   ...............   .....             .....     .....      .....     \n ");
     printf("               .,,,'.     .,,,'.    .,,,,,,,,,,,,'   .,,,,,,,,,,,,,,.   .,,,,,,,,,,,,,.   .,,,'             ',,,.     .,,,'.    .',,,'  \n  ");
     printf("               .,'','.    .,,,'.    .,,,'''''''''.   .'''''',,,'''''.   .,'','''''''''.   .,,,'             .,',.     .',,,'   .',,,'.     \n ");
@@ -27,6 +24,16 @@ int main () {
     printf("               .,,,.      .....                                                                                      .....       .'','.  \n");
     printf("                ..                                                                                                                  ..      \n");
     printf("\n");
+    return;
+}
+
+
+int main () {
+    int i=0;
+    int opcion, seguro;
+    struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
+
+    banner();
 
     printf("                   Iniciar Sesion\n                   Usuario:");
     scanf("%s", &Jugadores[i].NombreUsuario);
