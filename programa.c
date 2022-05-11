@@ -50,10 +50,11 @@ void explicacion () {
 
 
 int main () {
-    int i=0;
-    int opcion, seguro;
     struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
     struct TPregunta Preguntas[20];
+    int i=0;
+    int opcion, seguro;
+    FILE * ppreguntasfacil;
 
     banner();
 
@@ -70,6 +71,14 @@ int main () {
             switch (opcion){
         case 1 :
             printf("\n                   Ha elegido el modo facil\n");
+            ppreguntasfacil = fopen ("preguntasdemo.txt", "r");
+            if (ppreguntasfacil == NULL){
+                printf("Error en la apertura de fichero\n");
+                return 0;
+            }
+           if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
+            printf ("%s",Preguntas[i].pregunta);
+           }
 
 
 
