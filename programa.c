@@ -54,6 +54,7 @@ int main () {
     struct TPregunta Preguntas[20];
     int i=0;
     int opcion, seguro;
+    char opcionelegida;
     FILE * ppreguntasfacil;
 
     banner();
@@ -72,22 +73,54 @@ int main () {
         case 1 :
             printf("\n                   Ha elegido el modo facil\n");
             ppreguntasfacil = fopen ("preguntasdemo.txt", "r");
+
+        for (i=0; i<6; i++){
             if (ppreguntasfacil == NULL){
                 printf("Error en la apertura de fichero\n");
                 return 0;
             }
+
+            // esto irá en una función pero todavía lo estamos programando
            if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
             printf ("%s",Preguntas[i].pregunta);
            }
 
+            if (fgets(Preguntas[i].opcion1, 150, ppreguntasfacil)){
+            printf ("%s",Preguntas[i].opcion1);
+           }
 
+            if (fgets(Preguntas[i].opcion2, 150, ppreguntasfacil)){
+            printf ("%s",Preguntas[i].opcion2);
+           }
 
+            if (fgets(Preguntas[i].opcion3, 150, ppreguntasfacil)){
+            printf ("%s",Preguntas[i].opcion3);
+           }
 
+           if (fgets(Preguntas[i].opcioncorrecta, 150, ppreguntasfacil)){
+            printf ("%s",Preguntas[i].opcioncorrecta);
+           }
+
+           fflush(stdin);
+           scanf("%c", &opcionelegida);
+
+         /*  while (fscanf(ppreguntasfacil,"%c", Preguntas[i].opcioncorrecta)!= EOF){
+               if (opcionelegida == Preguntas[i].opcioncorrecta){
+                printf("Correcto");
+                }
+            else {
+                printf("Incorrecto");
+           }}*/
+
+           }
             // En este modo de juego, habrá 7 preguntas tipo test
             break;
         case 2 :
             printf("                   Ha elegido el modo dificil\n");
             //En este modo habrá 10 preguntas
+
+
+
             break;
         case 3 :
             printf("                   Va a perder su cuenta de netflix, ¿esta seguro que quiere salir?\n                    1) Si\n                    2) No\n");
