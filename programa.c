@@ -49,13 +49,16 @@ void explicacion () {
 }
 
 
+
 int main () {
     struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
     struct TPregunta Preguntas[20];
-    int i=0;
+    int i=0, vidas=3;
     int opcion, seguro;
     char opcionelegida;
+    char pistas[5];
     FILE * ppreguntasfacil;
+    FILE * ppistas;
 
     banner();
 
@@ -69,19 +72,19 @@ int main () {
     do {
     printf("\n                   Introduzca la opcion deseada:\n                   1) Modo facil\n                   2) Modo dificil\n                   3) Salir del juego\n");
     scanf("%d", &opcion);
-            switch (opcion){
+    switch (opcion){
         case 1 :
             printf("\n                   Ha elegido el modo facil\n");
             ppreguntasfacil = fopen ("preguntasdemo.txt", "r");
 
-        for (i=0; i<6; i++){
             if (ppreguntasfacil == NULL){
                 printf("Error en la apertura de fichero\n");
                 return 0;
             }
-
+        for (i=0; i<6; i++){
+                   fflush(stdin);
             // esto irá en una función pero todavía lo estamos programando
-           if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
+            if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
             printf ("%s",Preguntas[i].pregunta);
            }
 
@@ -97,22 +100,28 @@ int main () {
             printf ("%s",Preguntas[i].opcion3);
            }
 
-           if (fgets(Preguntas[i].opcioncorrecta, 150, ppreguntasfacil)){
-            printf ("%s",Preguntas[i].opcioncorrecta);
-           }
+           fscanf(ppreguntasfacil, "%c", &Preguntas[i].opcioncorrecta);
 
            fflush(stdin);
            scanf("%c", &opcionelegida);
 
-         /*  while (fscanf(ppreguntasfacil,"%c", Preguntas[i].opcioncorrecta)!= EOF){
-               if (opcionelegida == Preguntas[i].opcioncorrecta){
-                printf("Correcto");
+           if (opcionelegida==Preguntas[i].opcioncorrecta){
+            printf("Correcto\n Buen trabajo. Aqui tiene su %d pista\n",i+1);
+            ppistas = fopen ("pistas.txt", "r");
+                if (fgets(pistas, 150, ppistas)){
+                printf ("%s",pistas);
                 }
-            else {
-                printf("Incorrecto");
-           }}*/
 
+
+           } else {
+               printf ("Incorrecto\n");
+               vidas--;
+               printf("Ha perdido una vida y no recibira pista. Pongase las pilas.\n");
+               printf ("Vidas restantes: %d\n", vidas);
            }
+          }
+
+
             // En este modo de juego, habrá 7 preguntas tipo test
             break;
         case 2 :
@@ -132,7 +141,6 @@ int main () {
                     break;
                     case 2 :
                     break;
-                    //Que vuelva introducir al menu de facil/dificil/salir
                 } while  (seguro!=2 && seguro!= 1);
                 }
 

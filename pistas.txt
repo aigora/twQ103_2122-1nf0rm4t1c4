@@ -1,0 +1,5 @@
+el codigo 9285 tiene un numero correcto pero no esta bien colocado
+el codigo 1937 tiene dos numeros correctos pero no estan bien colocados
+el codigo 5201 tiene un numero correcto que esta bien colocado
+el codigo 6507 no tiene ningun numero correcto
+el codigo 8524 tiene dos numeros correctos pero no estan bien colocados
