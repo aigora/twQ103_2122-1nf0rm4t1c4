@@ -1,5 +1,5 @@
 #include <stdio.h>
-//Declaración del vector de estructura
+//Declaración de las estructuras
 struct TJugador {
     char NombreUsuario[50];
     char Contrasenya[50];
@@ -14,6 +14,8 @@ struct TPregunta {
     char opcioncorrecta;
 };
 
+
+//Para tener un código mas legible se extraen en funciones aparte el banner y la explicacion del juego
 void banner () {
     printf("               .....       ....     ..............    ...............   ...............   .....             .....     .....      .....     \n ");
     printf("               .,,,'.     .,,,'.    .,,,,,,,,,,,,'   .,,,,,,,,,,,,,,.   .,,,,,,,,,,,,,.   .,,,'             ',,,.     .,,,'.    .',,,'  \n  ");
@@ -49,16 +51,14 @@ void explicacion () {
 }
 
 
-
 int main () {
     struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
-    struct TPregunta Preguntas[20];
-    int i=0, vidas=3;
-    int opcion, seguro;
-    char opcionelegida;
-    char pistas[5];
-    FILE * ppreguntasfacil;
-    FILE * ppistas;
+    struct TPregunta Preguntas[10];//Hay un máximo de 10 preguntas
+    int i=0, j=0, YaExiste=0; //i y j son iteradores y YaExiste es una variable bandera para detectar si un usuario ya ha sido registrado
+    int opcion, seguro; //Opciones del menu
+    char opcionelegida; //Para guardar la opcion del usuario en las preguntas tipo test
+    FILE * ppreguntasfacil; //fichero de preguntas
+    FILE * pDatosUsuarios; //fichero de usuarios
 
     banner();
 
@@ -67,24 +67,49 @@ int main () {
     printf("                   Contrasenya:");
     scanf("%s", &Jugadores[i].Contrasenya);
 
+/*
+    pDatosUsuarios = fopen ("datos usuarios.txt", "w");
+    if (pDatosUsuarios == NULL){
+        printf ("Error en la apertura de fichero\n");
+        return 0;
+    }
+    for(i=0; i<200; i++){
+        for (j=1; j<199; j++){
+            if (Jugadores[i].NombreUsuario==Jugadores[j].NombreUsuario){
+                YaExiste=1;
+            }
+        }
+    }
+    if (YaExiste==1){
+        printf("Ya ha perdido su cuenta\n");
+        return 0;
+    }
+
+    fclose (pDatosUsuarios);*/
+
     explicacion();
 
     do {
     printf("\n                   Introduzca la opcion deseada:\n                   1) Modo facil\n                   2) Modo dificil\n                   3) Salir del juego\n");
     scanf("%d", &opcion);
-    switch (opcion){
+            switch (opcion){
         case 1 :
             printf("\n                   Ha elegido el modo facil\n");
-            ppreguntasfacil = fopen ("preguntasdemo.txt", "r");
 
+            ppreguntasfacil = fopen ("/Users/violetacaride/Desktop/ejercicioficheros/preguntasdemo.txt", "r");
+            ppistas = fopen ("pistas.txt", "r");
+    //Se hace un bucle para ir imprimiendo las preguntas mientras queden vidas
+    do {
+        for (i=0; i<6; i++){
             if (ppreguntasfacil == NULL){
                 printf("Error en la apertura de fichero\n");
                 return 0;
             }
-        for (i=0; i<6; i++){
-                   fflush(stdin);
+
             // esto irá en una función pero todavía lo estamos programando
-            if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
+           printf ("PREGUNTA %d\n", i+1);
+
+           if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
             printf ("%s",Preguntas[i].pregunta);
            }
 
@@ -106,23 +131,21 @@ int main () {
            scanf("%c", &opcionelegida);
 
            if (opcionelegida==Preguntas[i].opcioncorrecta){
-            printf("Correcto\n Buen trabajo. Aqui tiene su %d pista\n",i+1);
-            ppistas = fopen ("pistas.txt", "r");
+            printf("Correcto\n Buen trabajo. Aqui tiene su %d pista\n",j+1);
                 if (fgets(pistas, 150, ppistas)){
                 printf ("%s",pistas);
                 }
-
-
-           } else {
+            j++;
+           }
+            else {
                printf ("Incorrecto\n");
                vidas--;
                printf("Ha perdido una vida y no recibira pista. Pongase las pilas.\n");
                printf ("Vidas restantes: %d\n", vidas);
            }
           }
+    } while (vidas>0 && i<6);//mientras que queden vidas o preguntas por hacer
 
-
-            // En este modo de juego, habrá 7 preguntas tipo test
             break;
         case 2 :
             printf("                   Ha elegido el modo dificil\n");
@@ -141,6 +164,7 @@ int main () {
                     break;
                     case 2 :
                     break;
+                    //Que vuelva introducir al menu de facil/dificil/salir
                 } while  (seguro!=2 && seguro!= 1);
                 }
 
