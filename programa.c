@@ -24,6 +24,9 @@ struct TPista {
 
 //Para tener un código mas legible se extraen en funciones aparte el banner y la explicacion del juego
 void banner () {
+    printf("\n");
+    printf("\n");
+    printf("\n");
     printf("               .....       ....     ..............    ...............   ...............   .....             .....     .....      .....     \n ");
     printf("               .,,,'.     .,,,'.    .,,,,,,,,,,,,'   .,,,,,,,,,,,,,,.   .,,,,,,,,,,,,,.   .,,,'             ',,,.     .,,,'.    .',,,'  \n  ");
     printf("               .,'','.    .,,,'.    .,,,'''''''''.   .'''''',,,'''''.   .,'','''''''''.   .,,,'             .,',.     .',,,'   .',,,'.     \n ");
