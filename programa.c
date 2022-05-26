@@ -76,10 +76,11 @@ int main () {
     struct TPregunta Preguntas[10];//Hay un máximo de 10 preguntas
     struct TPista Pistas[10];
     int i=0, j=0, YaExiste=0, resultado; //i y j son iteradores y YaExiste es una variable bandera para detectar si un usuario ya ha sido registrado y resultado es para comparar
+    int usuarios;
     int opcion, seguro; //Opciones del menu
     int vidas=3;
     char opcionelegida; //Para guardar la opcion del usuario en las preguntas tipo test
-    char nuevonombre, nuevacontrasenya;
+    char nuevonombre[50], nuevacontrasenya[50];
     FILE * ppreguntasfacil; //fichero de preguntas
     FILE * pDatosUsuarios; //fichero de usuarios
     FILE * ppistas; //fichero de pistas
@@ -88,8 +89,7 @@ int main () {
 
     //guardo los datos del fichero en la estructura y cierro el fichero
 
-    pDatosUsuarios
-     = fopen("datos usuarios.txt","r");
+    pDatosUsuarios = fopen("datos usuarios.txt","r");
     if (pDatosUsuarios == NULL){
         printf ("Error en la apertura de fichero\n");
         return 0;
@@ -98,16 +98,17 @@ int main () {
         //printf("%s %s\n", Jugadores[i].NombreUsuario, Jugadores[i].Contrasenya);
         i++;
     }
+    usuarios = i;
     fclose(pDatosUsuarios);
 
     printf("                   Iniciar Sesion\n                   Usuario:");
-    scanf("%s", &nuevonombre);
+    scanf("%s", nuevonombre);
     fflush(stdin);
     printf("                   Contrasenya:");
-    scanf("%s", &nuevacontrasenya);
+    scanf("%s", nuevacontrasenya);
 
-    for(j=0; j<i; j++){
-        resultado=strcmp(nuevonombre, Jugadores[i].NombreUsuario);
+    for(i=0; i<usuarios; i++){
+        resultado = strcmp(nuevonombre, Jugadores[i].NombreUsuario);
     }
         if(resultado==0){
             printf("Ya lo has intentado, no puedes recuperar tu cuenta\n");
