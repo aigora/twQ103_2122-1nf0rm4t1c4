@@ -63,10 +63,14 @@ void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
     printf("\nProporcionadas todas las pistas, introduzca cual cree que es el nuevo codigo\n");
     scanf("%d", &codigo);
     if(codigo==codigocorrecto){
+        banner();
         if (modo==1){
                 printf("Enhorabuena por recuperar su contrasenya, puede seguir disfrutrando de la plataforma.\n");}
         else if (modo==2){
-                printf("Enhorabuena por recuperar su contrasenya, ha obtenido además 1 mes gratis :) \n");}
+                printf("Enhorabuena por recuperar su contrasenya, ha obtenido ademas 1 mes gratis :) \n");}
+        }
+        else {
+            printf("El codigo introducido no es correcto. Ha perdido su cuenta de netflix\n");
         }
         return;
 }
@@ -74,20 +78,22 @@ void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
 int main () {
     struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
     struct TPregunta Preguntas[10];//Hay un máximo de 10 preguntas
-    struct TPista Pistas[10];
-    int i=0, j=0, YaExiste=0, resultado; //i y j son iteradores y YaExiste es una variable bandera para detectar si un usuario ya ha sido registrado y resultado es para comparar
+    struct TPista Pistas[7];
+    int i=0, j=0, resultado; //i y j son iteradores y resultado es para comparar
     int usuarios;
     int opcion, seguro; //Opciones del menu
     int vidas=3;
     char opcionelegida; //Para guardar la opcion del usuario en las preguntas tipo test
     char nuevonombre[50], nuevacontrasenya[50];
-    FILE * ppreguntasfacil; //fichero de preguntas
+    char pistas[10];
+    FILE * ppreguntasfacil; //fichero de preguntas modo facil
+    FILE * ppreguntasdificil; //fichero de preguntas modo dificil
     FILE * pDatosUsuarios; //fichero de usuarios
     FILE * ppistas; //fichero de pistas
 
     banner();
 
-    //guardo los datos del fichero en la estructura y cierro el fichero
+    //guardo los datos del fichero USUARIOS en la estructura y cierro el fichero
 
     pDatosUsuarios = fopen("datos usuarios.txt","r");
     if (pDatosUsuarios == NULL){
@@ -113,19 +119,21 @@ int main () {
         if(resultado==0){
             printf("Ya lo has intentado, no puedes recuperar tu cuenta\n");
             return 0;
-        } else if (resultado==1 || resultado== -1){
+        } else if (resultado==-1||resultado==1){
+            strcpy(Jugadores[i].NombreUsuario, nuevonombre);
+            strcpy(Jugadores[i].Contrasenya, nuevacontrasenya);
+
             pDatosUsuarios = fopen ("datos usuarios.txt", "w");
                 if (pDatosUsuarios == NULL){
                     printf ("Error en la apertura de fichero\n");
                     return 0;
                 }
                 else {
-                    for(j=0; j<i+1; j++){
+                    for(j=0; j<usuarios+1; j++){
                         fprintf(pDatosUsuarios, "%s %s", Jugadores[j].NombreUsuario, Jugadores[j].Contrasenya);
+                        fprintf(pDatosUsuarios, "\n");
                         }
                 }
-
-
         fclose (pDatosUsuarios);
         }
 
@@ -133,14 +141,15 @@ int main () {
     explicacion();
 
     do {
-    printf("\n                   Introduzca la opcion deseada:\n                   1) Modo facil\n                   2) Modo dificil\n                   3) Salir del juego\n");
+    printf("\n                   Introduzca la opcion deseada:\n                   1) Modo facil\n                   2) Modo extremo\n                   3) Salir del juego\n");
     scanf("%d", &opcion);
             switch (opcion){
         case 1 :
             printf("\n                   Ha elegido el modo facil\n");
 
-            ppreguntasfacil = fopen ("preguntasdemo.txt", "r");
-            ppistas = fopen ("pistas.txt", "r");
+            ppreguntasfacil = fopen ("preguntas facil.txt", "r");
+            ppistas = fopen ("pistas codigo.txt", "r");
+            j=0;
     //Se hace un bucle para ir imprimiendo las preguntas mientras queden vidas
         for (i=0; i<MODOFACIL; i++){
             if (ppreguntasfacil == NULL){
@@ -148,8 +157,7 @@ int main () {
                 return 0;
             }
 
-            // esto irá en una función pero todavía lo estamos programando
-           printf ("PREGUNTA %d\n", i+1);
+           printf ("\nPREGUNTA %d\n", i+1);
 
            if (fgets(Preguntas[i].pregunta, 150, ppreguntasfacil)){
             printf ("%s",Preguntas[i].pregunta);
@@ -173,7 +181,7 @@ int main () {
            scanf("%c", &opcionelegida);
 
            if (opcionelegida==Preguntas[i].opcioncorrecta){
-            printf("Correcto\n Buen trabajo. Aqui tiene su %d pista\n",j+1);
+            printf("Correcto\nBuen trabajo. Aqui tiene su %d pista\n",j+1);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -181,6 +189,7 @@ int main () {
                 }
             j++;
            }
+
             else {
                printf ("Incorrecto\n");
                vidas--;
@@ -188,24 +197,79 @@ int main () {
                printf ("Vidas restantes: %d\n", vidas);
            }
            if(vidas==0){
-            printf("No le quedan vidas. Ha perdido su cuenta de Netflix\n");
+            printf("No le quedan vidas.\n");
             break;
            }
           }
-
-
 
     if (vidas>=0){
         codigofinal(opcion);
     }
 
-
             break;
         case 2 :
-            printf("                   Ha elegido el modo dificil\n");
-            //En este modo habrá 10 preguntas
+            printf("                   Ha elegido el modo extremo\n");
 
+            ppreguntasdificil = fopen ("preguntas dificil.txt", "r");
+            ppistas = fopen ("pistas codigo.txt", "r");
+            j=0;
+    //Se hace un bucle para ir imprimiendo las preguntas mientras queden vidas
+        for (i=0; i<MODODIFICIL; i++){
+            if (ppreguntasdificil == NULL){
+                printf("Error en la apertura de fichero\n");
+                return 0;
+            }
 
+           printf ("\nPREGUNTA %d\n", i+1);
+
+           if (fgets(Preguntas[i].pregunta, 150, ppreguntasdificil)){
+            printf ("%s",Preguntas[i].pregunta);
+           }
+
+            if (fgets(Preguntas[i].opcion1, 150, ppreguntasdificil)){
+            printf ("%s",Preguntas[i].opcion1);
+           }
+
+            if (fgets(Preguntas[i].opcion2, 150, ppreguntasdificil)){
+            printf ("%s",Preguntas[i].opcion2);
+           }
+
+            if (fgets(Preguntas[i].opcion3, 150, ppreguntasdificil)){
+            printf ("%s",Preguntas[i].opcion3);
+           }
+
+           fscanf(ppreguntasdificil, "%c", &Preguntas[i].opcioncorrecta);
+
+           fflush(stdin);
+           scanf("%c", &opcionelegida);
+
+           if (opcionelegida==Preguntas[i].opcioncorrecta){
+            printf("Correcto\nBuen trabajo.");
+                if (i%2==0){
+                printf(" Aqui tiene su %d pista\n",j+1);
+                fscanf(ppistas, "%d", &Pistas[j].codigo);
+                printf("%d", Pistas[j].codigo);
+                if (fgets(Pistas[j].pista, 150, ppistas)){
+                printf ("%s",Pistas[j].pista);
+                }} else printf("\n");
+            j++;
+           }
+
+            else {
+               printf ("Incorrecto\n");
+               vidas--;
+               printf("Ha perdido una vida y no recibira pista. Pongase las pilas.\n");
+               printf ("Vidas restantes: %d\n", vidas);
+           }
+           if(vidas==0){
+            printf("No le quedan vidas.\n");
+            break;
+           }
+          }
+
+    if (vidas>=0){
+        codigofinal(opcion);
+    }
 
             break;
         case 3 :

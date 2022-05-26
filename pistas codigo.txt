@@ -1,10 +1,7 @@
-9285
-Un numero esta bien pero mal colocado
-1937
-dos numero están bien pero mal colocados
-5201
-un numero esta bien y bien colocado 
-6507
-Nada esta bien
-8524
-Dos numero están bien pero mal colocados
+9285 Un numero esta bien pero mal colocado
+1937 Dos numero estan bien pero mal colocados
+5201 Un numero esta bien y bien colocado 
+6507 Nada esta bien
+8524 Dos numero estan bien pero mal colocados
+9876 Un numero esta bien y bien colocado 
+2992 Nada esta bien
