@@ -12,6 +12,5 @@ Queremos que nuestro programa sea capaz de:
  - Guardar los datos del usuario.
  - Detectar si el usuario ha sido registrado ya o no.
  - Ofrecer distintos niveles de dificultad.
- - No plantear una nueva pregunta hasta que la anterior sea haya respodido correctamente.
  - Llevar la cuenta de las vidas del jugador y en caso de que se agoten salir del programa.
  
