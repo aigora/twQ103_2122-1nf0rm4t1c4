@@ -49,12 +49,11 @@ void banner () {
 
 void explicacion () {
     printf("\n\n                   Su cuenta de Netflix ha sido hackeada.\n                   Si quiere recuperarla deber%c adivinar la nueva contrase%ca. Hemos dise%cado un juego para ver qui%cnes son los usuarios m%cs fieles a la plataforma.\n",160,164,164,130,160);
-    printf("                   Superarlo bastar%c para poder volver a utilizar N3TFL1X. Como ve a continuaci%cn, hay distintos niveles de juego.\n",160,162);
+    printf("                   Superarlo bastar%c para poder volver a utilizar su cuenta de N3TFL1X. Como ve a continuaci%cn, hay distintos niveles de juego.\n",160,162);
     printf("                   Si decide jugar al modo extremo, le regalaremos una suscripcion mensual gratis.\n");
-    printf("                   Sin embargo, el modo f%ccil, s%clo le permitir%c recuperar su cuenta. Deber%c contestar correctamente a las preguntas que le sean planteadas.\n",160,162,160,160);
+    printf("                   Mientras que en el modo f%ccil, s%clo le permitir%c recuperar su cuenta en la que deber%c contestar correctamente a las preguntas que le sean planteadas.\n",160,162,160,160);
     printf("                   Conforme vaya acertando, se le proporcionar%cn pistas acerca de la clave que busca.\n",160);
-    printf("                   Le advertimos que debe pensar bien sus respuestas, porque si falla m%cs de tres preguntas, se cerrar%c el juego y nos quedaremos con su cuenta para siempre.\n",160,160);
-    printf("                   Podr%c salir del juego en todo momento, pero una vez que lo haga, no habr%c vuelta atras.\n",160,160);
+    printf("                   Le advertimos que debe pensar bien sus respuestas, porque s%clo podr%c responder las preguntas una vez y no habr%c vuelta atr%cs.\n",162,160,160);
 
     return;
 }
