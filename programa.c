@@ -63,17 +63,17 @@ void explicacion () {
 void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
     int codigo;
     int codigocorrecto=3841;
-    printf("\nProporcionadas todas las pistas, introduzca cual cree que es el nuevo c%cdigo\n", 162);
+    printf("\n\nProporcionadas todas las pistas, introduzca cual cree que es el nuevo c%cdigo\n", 162);
     scanf("%d", &codigo);
     if(codigo==codigocorrecto){
         banner();
         if (modo==1){
-                printf("Enhorabuena por recuperar su contrase%ca, puede seguir disfrutrando de la plataforma.\n", 164);}
+                printf("\nEnhorabuena por recuperar su contrase%ca, puede seguir disfrutrando de la plataforma.\n", 164);}
         else if (modo==2){
-                printf("Enhorabuena por recuperar su contrase%ca, ha obtenido adem%cs 1 mes gratis :) \n", 164,160);}
+                printf("\nEnhorabuena por recuperar su contrase%ca, ha obtenido adem%cs 1 mes gratis :) \n", 164,160);}
         }
-        else {
-            printf("El c%cdigo introducido no es correcto. Ha perdido su cuenta de netflix\n", 162);
+    else if (codigo!=codigocorrecto) {
+            printf("\nEl c%cdigo introducido no es correcto. Ha perdido su cuenta de netflix\n", 162);
         }
         return;
 }
@@ -184,7 +184,7 @@ int main () {
            scanf("%c", &opcionelegida);
 
            if (opcionelegida==Preguntas[i].opcioncorrecta){
-            printf("Correcto\nBuen trabajo. Aqu%c tiene su %d%c pista\n",j+1,161, 248);
+            printf("Correcto\nBuen trabajo. Aqu%c tiene su %d%c pista\n",161, j+1, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -251,7 +251,7 @@ int main () {
            if (opcionelegida==Preguntas[i].opcioncorrecta){
             printf("Correcto\nBuen trabajo.");
                 if (i%2==0){
-                printf(" Aqu%c tiene su %d%c pista\n",j+1,161, 248);
+                printf(" Aqu%c tiene su %d%c pista\n",161, j+1, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){

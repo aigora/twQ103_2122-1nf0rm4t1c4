@@ -26,7 +26,7 @@ bCuantas peliculas hay disponibles en netflix de la saga Barbie
 a) 7
 b) 9
 c) 11
-cCuando llego Netflix a España
+cCuando llego Netflix a Espana
 a) 2011
 b) 2013
 c) 2015
