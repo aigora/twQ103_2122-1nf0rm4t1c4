@@ -279,7 +279,7 @@ int main () {
 
             break;
         case 3 :
-            printf("                   Va a perder su cuenta de netflix, ¿est%c seguro que quiere salir?\n                    1) Si\n                    2) No\n", 160);
+            printf("                   Va a perder su cuenta de netflix, %cest%c seguro que quiere salir%c\n                    1) Si\n                    2) No\n",168,160,63);
             scanf("%d", &seguro);
                 switch (seguro){
                 do {
