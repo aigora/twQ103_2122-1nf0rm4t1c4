@@ -6,7 +6,6 @@
 struct TJugador {
     char NombreUsuario[50];
     char Contrasenya[50];
-    //int vidas;
 };
 
 struct TPregunta {
@@ -60,6 +59,7 @@ void explicacion () {
     return;
 }
 
+//Esta funcion se llama al terminarse todas las preguntas o al quedarse el usuario sin vidas para pedirle la clave final
 void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
     int codigo;
     int codigocorrecto=3841;
@@ -68,12 +68,12 @@ void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
     if(codigo==codigocorrecto){
         banner();
         if (modo==1){
-                printf("Enhorabuena por recuperar su contrasenya, puede seguir disfrutrando de la plataforma.\n");}
+                printf("Enhorabuena por recuperar su contrase%ca, puede seguir disfrutrando de la plataforma.\n", 164);}
         else if (modo==2){
-                printf("Enhorabuena por recuperar su contrasenya, ha obtenido ademas 1 mes gratis :) \n");}
+                printf("Enhorabuena por recuperar su contrase%ca, ha obtenido ademas 1 mes gratis :) \n", 164);}
         }
         else {
-            printf("El codigo introducido no es correcto. Ha perdido su cuenta de netflix\n");
+            printf("El c%cdigo introducido no es correcto. Ha perdido su cuenta de netflix\n", 162);
         }
         return;
 }
@@ -81,14 +81,13 @@ void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
 int main () {
     struct TJugador Jugadores[200];//Se guarda espacio para 200 jugadores
     struct TPregunta Preguntas[10];//Hay un máximo de 10 preguntas
-    struct TPista Pistas[7];
+    struct TPista Pistas[7];//Se guarda un vector de estructuras con 7 pistas, que son las que hay como maximo
     int i=0, j=0, resultado; //i y j son iteradores y resultado es para comparar
-    int usuarios;
+    int usuarios; //Para llevar la cuenta del numero de usuarios registrados
     int opcion, seguro; //Opciones del menu
-    int vidas=3;
+    int vidas=3; //Todos los usuarios comienzan con 3 vidas
     char opcionelegida; //Para guardar la opcion del usuario en las preguntas tipo test
     char nuevonombre[50], nuevacontrasenya[50];
-    char pistas[10];
     FILE * ppreguntasfacil; //fichero de preguntas modo facil
     FILE * ppreguntasdificil; //fichero de preguntas modo dificil
     FILE * pDatosUsuarios; //fichero de usuarios
@@ -110,12 +109,13 @@ int main () {
     usuarios = i;
     fclose(pDatosUsuarios);
 
-    printf("                   Iniciar Sesion\n                   Usuario:");
+    printf("                   Iniciar Sesi%cn\n                   Usuario:", 162);
     scanf("%s", nuevonombre);
     fflush(stdin);
-    printf("                   Contrasenya:");
+    printf("                   Contrase%ca:", 164);
     scanf("%s", nuevacontrasenya);
 
+    //Compara el nuevo usuario con los ya registrados para ver si se ha registrado ya antes
     for(i=0; i<usuarios; i++){
         resultado = strcmp(nuevonombre, Jugadores[i].NombreUsuario);
     }
@@ -126,7 +126,7 @@ int main () {
             strcpy(Jugadores[i].NombreUsuario, nuevonombre);
             strcpy(Jugadores[i].Contrasenya, nuevacontrasenya);
 
-            pDatosUsuarios = fopen ("datos usuarios.txt", "w");
+            pDatosUsuarios = fopen ("datos usuarios.txt", "w"); //Vuelvo a abrir el fichero para gusrdar el nuevo usuario
                 if (pDatosUsuarios == NULL){
                     printf ("Error en la apertura de fichero\n");
                     return 0;
@@ -144,7 +144,7 @@ int main () {
     explicacion();
 
     do {
-    printf("\n                   Introduzca la opcion deseada:\n                   1) Modo facil\n                   2) Modo extremo\n                   3) Salir del juego\n");
+    printf("\n                   Introduzca la opci%cn deseada:\n                   1) Modo f%ccil\n                   2) Modo extremo\n                   3) Salir del juego\n", 162, 162);
     scanf("%d", &opcion);
             switch (opcion){
         case 1 :
@@ -184,7 +184,7 @@ int main () {
            scanf("%c", &opcionelegida);
 
            if (opcionelegida==Preguntas[i].opcioncorrecta){
-            printf("Correcto\nBuen trabajo. Aqui tiene su %d pista\n",j+1);
+            printf("Correcto\nBuen trabajo. Aqui tiene su %d%c pista\n",j+1, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -204,6 +204,8 @@ int main () {
             break;
            }
           }
+    fclose(ppreguntasfacil);
+    fclose(ppistas);
 
     if (vidas>=0){
         codigofinal(opcion);
@@ -249,7 +251,7 @@ int main () {
            if (opcionelegida==Preguntas[i].opcioncorrecta){
             printf("Correcto\nBuen trabajo.");
                 if (i%2==0){
-                printf(" Aqui tiene su %d pista\n",j+1);
+                printf(" Aqui tiene su %d%c pista\n",j+1, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -269,6 +271,8 @@ int main () {
             break;
            }
           }
+    fclose(ppreguntasdificil);
+    fclose(ppistas);
 
     if (vidas>=0){
         codigofinal(opcion);
@@ -294,13 +298,7 @@ int main () {
         default:
             printf("ERROR, Introduzca un valor válido\n");
     }
-    } while (opcion==3 && seguro==2 );
+    } while (opcion==3 && seguro==2);
 
-
-
-
+    return 0;
 }
-
-
-
-//[]{}
