@@ -48,13 +48,13 @@ void banner () {
 }
 
 void explicacion () {
-    printf("\n\n                   Su cuenta de Netflix ha sido hackeada.\n                   Si quiere recuperarla debera adivinar la nueva contrasena. Hemos disenado un juego para ver quienes son los usuarios mas fieles a la plataforma.\n");
-    printf("                   Superarlo bastara para poder volver a utilizar N3TFL1X. Como ve a continuacion, hay distintos niveles de juego.\n");
+    printf("\n\n                   Su cuenta de Netflix ha sido hackeada.\n                   Si quiere recuperarla deber%c adivinar la nueva contrase%ca. Hemos dise%cado un juego para ver qui%cnes son los usuarios m%cs fieles a la plataforma.\n",160,164,164,130,160);
+    printf("                   Superarlo bastar%c para poder volver a utilizar N3TFL1X. Como ve a continuaci%cn, hay distintos niveles de juego.\n",160,162);
     printf("                   Si decide jugar al modo extremo, le regalaremos una suscripcion mensual gratis.\n");
-    printf("                   Sin embargo, el modo facil, solo le permitira recuperar su cuenta. Debera contestar correctamente a las preguntas que le sean planteadas.\n");
-    printf("                   Conforme vaya acertando, se le proporcionaran pistas acerca de la clave que busca.\n");
-    printf("                   Le advertimos que debe pensar bien sus respuestas, porque si falla mas de tres preguntas, se cerrara el juego y nos quedaremos con su cuenta para siempre.\n");
-    printf("                   Podra salir del juego en todo momento, pero una vez que lo haga, no habra vuelta atras.\n");
+    printf("                   Sin embargo, el modo f%ccil, s%clo le permitir%c recuperar su cuenta. Deber%c contestar correctamente a las preguntas que le sean planteadas.\n",160,162,160,160);
+    printf("                   Conforme vaya acertando, se le proporcionar%cn pistas acerca de la clave que busca.\n",160);
+    printf("                   Le advertimos que debe pensar bien sus respuestas, porque si falla m%cs de tres preguntas, se cerrar%c el juego y nos quedaremos con su cuenta para siempre.\n",160,160);
+    printf("                   Podr%c salir del juego en todo momento, pero una vez que lo haga, no habr%c vuelta atras.\n",160,160);
 
     return;
 }
@@ -63,14 +63,14 @@ void explicacion () {
 void codigofinal (int modo) { //si modo=1 facil y si modo=2 dificil
     int codigo;
     int codigocorrecto=3841;
-    printf("\nProporcionadas todas las pistas, introduzca cual cree que es el nuevo codigo\n");
+    printf("\nProporcionadas todas las pistas, introduzca cual cree que es el nuevo c%cdigo\n", 162);
     scanf("%d", &codigo);
     if(codigo==codigocorrecto){
         banner();
         if (modo==1){
                 printf("Enhorabuena por recuperar su contrase%ca, puede seguir disfrutrando de la plataforma.\n", 164);}
         else if (modo==2){
-                printf("Enhorabuena por recuperar su contrase%ca, ha obtenido ademas 1 mes gratis :) \n", 164);}
+                printf("Enhorabuena por recuperar su contrase%ca, ha obtenido adem%cs 1 mes gratis :) \n", 164,160);}
         }
         else {
             printf("El c%cdigo introducido no es correcto. Ha perdido su cuenta de netflix\n", 162);
@@ -144,7 +144,7 @@ int main () {
     explicacion();
 
     do {
-    printf("\n                   Introduzca la opci%cn deseada:\n                   1) Modo f%ccil\n                   2) Modo extremo\n                   3) Salir del juego\n", 162, 162);
+    printf("\n                   Introduzca la opci%cn deseada:\n                   1) Modo f%ccil\n                   2) Modo extremo\n                   3) Salir del juego\n", 162, 160);
     scanf("%d", &opcion);
             switch (opcion){
         case 1 :
@@ -184,7 +184,7 @@ int main () {
            scanf("%c", &opcionelegida);
 
            if (opcionelegida==Preguntas[i].opcioncorrecta){
-            printf("Correcto\nBuen trabajo. Aqui tiene su %d%c pista\n",j+1, 248);
+            printf("Correcto\nBuen trabajo. Aqu%c tiene su %d%c pista\n",j+1,161, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -196,7 +196,7 @@ int main () {
             else {
                printf ("Incorrecto\n");
                vidas--;
-               printf("Ha perdido una vida y no recibira pista. Pongase las pilas.\n");
+               printf("Ha perdido una vida y no recibir%c pista. P%cngase las pilas.\n", 160, 162);
                printf ("Vidas restantes: %d\n", vidas);
            }
            if(vidas==0){
@@ -251,7 +251,7 @@ int main () {
            if (opcionelegida==Preguntas[i].opcioncorrecta){
             printf("Correcto\nBuen trabajo.");
                 if (i%2==0){
-                printf(" Aqui tiene su %d%c pista\n",j+1, 248);
+                printf(" Aqu%c tiene su %d%c pista\n",j+1,161, 248);
                 fscanf(ppistas, "%d", &Pistas[j].codigo);
                 printf("%d", Pistas[j].codigo);
                 if (fgets(Pistas[j].pista, 150, ppistas)){
@@ -263,7 +263,7 @@ int main () {
             else {
                printf ("Incorrecto\n");
                vidas--;
-               printf("Ha perdido una vida y no recibira pista. Pongase las pilas.\n");
+               printf("Ha perdido una vida y no recibir%c pista. P%cngase las pilas.\n",160,162);
                printf ("Vidas restantes: %d\n", vidas);
            }
            if(vidas==0){
@@ -280,7 +280,7 @@ int main () {
 
             break;
         case 3 :
-            printf("                   Va a perder su cuenta de netflix, ¿esta seguro que quiere salir?\n                    1) Si\n                    2) No\n");
+            printf("                   Va a perder su cuenta de netflix, ¿est%c seguro que quiere salir?\n                    1) Si\n                    2) No\n", 160);
             scanf("%d", &seguro);
                 switch (seguro){
                 do {
@@ -296,7 +296,7 @@ int main () {
 
             break;
         default:
-            printf("ERROR, Introduzca un valor válido\n");
+            printf("ERROR, Introduzca un valor v%clido\n", 160);
     }
     } while (opcion==3 && seguro==2);
 
